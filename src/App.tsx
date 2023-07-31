@@ -44,6 +44,28 @@ function App() {
     )
   );
 
+  const nextAnniversaryDaysLeft =
+    dayjs(
+      new Date(
+        isCurrentYearAnniversaryPassed
+          ? dayjs().add(1, "year").year()
+          : dayjs().year(),
+        ANNIVERSARY_DATE.getMonth(),
+        ANNIVERSARY_DATE.getDate()
+      )
+    ).diff(dayjs(), "days") + 1; // ? include today's date in difference
+
+  const previousAnniversaryDaysAgo = dayjs().diff(
+    new Date(
+      isCurrentYearAnniversaryPassed
+        ? dayjs().year()
+        : dayjs().subtract(1, "year").year(),
+      ANNIVERSARY_DATE.getMonth(),
+      ANNIVERSARY_DATE.getDate()
+    ),
+    "days"
+  );
+
   const [currentPalette, setCurrentPalette] = useState(0);
 
   const cardRef = useRef<HTMLDivElement>(null);
@@ -101,33 +123,13 @@ function App() {
 
             <p>
               <span className="font-semibold">Next Anniversary:</span> in{" "}
-              {
-                dayjs(
-                  new Date(
-                    isCurrentYearAnniversaryPassed
-                      ? dayjs().add(1, "year").year()
-                      : dayjs().year(),
-                    ANNIVERSARY_DATE.getMonth(),
-                    ANNIVERSARY_DATE.getDate()
-                  )
-                ).diff(dayjs(), "days") + 1 // ? include today's date in difference
-              }{" "}
-              days
+              {nextAnniversaryDaysLeft} day{nextAnniversaryDaysLeft > 1 && "s"}
             </p>
 
             <p>
               <span className="font-semibold">Last Anniversary:</span>{" "}
-              {dayjs().diff(
-                new Date(
-                  isCurrentYearAnniversaryPassed
-                    ? dayjs().year()
-                    : dayjs().subtract(1, "year").year(),
-                  ANNIVERSARY_DATE.getMonth(),
-                  ANNIVERSARY_DATE.getDate()
-                ),
-                "days"
-              )}{" "}
-              days ago
+              {previousAnniversaryDaysAgo} day
+              {previousAnniversaryDaysAgo > 1 && "s"} ago
             </p>
           </div>
         </div>
