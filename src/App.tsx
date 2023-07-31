@@ -101,15 +101,17 @@ function App() {
 
             <p>
               <span className="font-semibold">Next Anniversary:</span> in{" "}
-              {dayjs(
-                new Date(
-                  isCurrentYearAnniversaryPassed
-                    ? dayjs().add(1, "year").year()
-                    : dayjs().year(),
-                  ANNIVERSARY_DATE.getMonth(),
-                  ANNIVERSARY_DATE.getDate()
-                )
-              ).diff(dayjs(), "days")}{" "}
+              {
+                dayjs(
+                  new Date(
+                    isCurrentYearAnniversaryPassed
+                      ? dayjs().add(1, "year").year()
+                      : dayjs().year(),
+                    ANNIVERSARY_DATE.getMonth(),
+                    ANNIVERSARY_DATE.getDate()
+                  )
+                ).diff(dayjs(), "days") + 1 // ? include today's date in difference
+              }{" "}
               days
             </p>
 
