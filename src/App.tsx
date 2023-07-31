@@ -38,7 +38,7 @@ function App() {
         new Date(
           dayjs().year(),
           ANNIVERSARY_DATE.getMonth(),
-          ANNIVERSARY_DATE.getDay()
+          ANNIVERSARY_DATE.getDate()
         )
       )
     )
@@ -107,7 +107,7 @@ function App() {
                     ? dayjs().add(1, "year").year()
                     : dayjs().year(),
                   ANNIVERSARY_DATE.getMonth(),
-                  ANNIVERSARY_DATE.getDay()
+                  ANNIVERSARY_DATE.getDate()
                 )
               ).diff(dayjs(), "days")}{" "}
               days
@@ -121,7 +121,7 @@ function App() {
                     ? dayjs().year()
                     : dayjs().subtract(1, "year").year(),
                   ANNIVERSARY_DATE.getMonth(),
-                  ANNIVERSARY_DATE.getDay()
+                  ANNIVERSARY_DATE.getDate()
                 ),
                 "days"
               )}{" "}
